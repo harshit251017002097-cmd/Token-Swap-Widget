@@ -77,15 +77,15 @@ export default function Home() {
 
           <h1 className="mb-3">
             <span className="block text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
-              <span className="text-white">Supply Chain </span>
-              <span className="bg-gradient-to-r from-[#7c6cf0] via-[#4fc3f7] to-[#7c6cf0] bg-[length:200%_auto] animate-gradient-shift bg-clip-text text-transparent">
-                on the Blockchain
+              <span className="text-white">Token </span>
+              <span className="bg-gradient-to-r from-[#f472b6] via-[#7c6cf0] to-[#f472b6] bg-[length:200%_auto] animate-gradient-shift bg-clip-text text-transparent">
+                Swap Widget
               </span>
             </span>
           </h1>
 
           <p className="mx-auto max-w-lg text-sm sm:text-base leading-relaxed text-white/40">
-            Register products, track shipments, and verify authenticity — immutably on Stellar.
+            Exchange tokens atomically between two users — directly on Stellar with minimal fees.
           </p>
 
           {/* Inline stats */}
@@ -112,17 +112,17 @@ export default function Home() {
 
         {/* Footer */}
         <div className="mt-10 flex flex-col items-center gap-4 animate-fade-in">
-          {/* Supply chain flow */}
+          {/* Swap flow */}
           <div className="flex items-center gap-3 text-xs text-white/20">
-            {["Created", "Shipped", "Delivered"].map((step, i) => (
+            {["Connect", "Swap", "Done"].map((step, i) => (
               <span key={step} className="flex items-center gap-3">
                 <span className="flex items-center gap-1.5">
                   <span
                     className={`h-1.5 w-1.5 rounded-full ${
                       i === 0
-                        ? "bg-[#fbbf24]/50"
+                        ? "bg-[#7c6cf0]/50"
                         : i === 1
-                          ? "bg-[#4fc3f7]/50"
+                          ? "bg-[#f472b6]/50"
                           : "bg-[#34d399]/50"
                     }`}
                   />

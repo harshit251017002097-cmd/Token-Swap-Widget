@@ -26,7 +26,7 @@ import {
 
 /** Your deployed Soroban contract ID */
 export const CONTRACT_ADDRESS =
-  "CDJVMAX34YRCQ5JFC6SIOQOVSUY6XWEFYJOLF3SBCKU7CMI3IAP6HPWN";
+  "CAL5P7OLFFJO6SUAMZHOHLZJJLAQWBYFNMHOMHPUALBVIJL2Z2EDSRE6";
 
 /** Network passphrase (testnet by default) */
 export const NETWORK_PASSPHRASE = Networks.TESTNET;
@@ -212,56 +212,35 @@ export function toScValBool(value: boolean): xdr.ScVal {
 }
 
 // ============================================================
-// Supply Chain Tracker — Contract Methods
+// Token Swap Widget — Contract Methods
 // ============================================================
 
 /**
- * Add a product to the supply chain.
- * Calls: add_product(product_id: String, origin: String)
+ * Swap tokens between two users.
+ * Calls: swap(user1: Address, user2: Address, token1: Address, token2: Address, amount1: i128, amount2: i128)
+ * Both users must authorize the transaction.
  */
-export async function addProduct(
+export async function swapTokens(
   caller: string,
-  productId: string,
-  origin: string
+  user1: string,
+  user2: string,
+  token1: string,
+  token2: string,
+  amount1: bigint,
+  amount2: bigint
 ) {
   return callContract(
-    "add_product",
-    [toScValString(productId), toScValString(origin)],
+    "swap",
+    [
+      toScValAddress(user1),
+      toScValAddress(user2),
+      toScValAddress(token1),
+      toScValAddress(token2),
+      toScValI128(amount1),
+      toScValI128(amount2),
+    ],
     caller,
     true
-  );
-}
-
-/**
- * Update a product's status.
- * Calls: update_status(product_id: String, new_status: String)
- */
-export async function updateProductStatus(
-  caller: string,
-  productId: string,
-  newStatus: string
-) {
-  return callContract(
-    "update_status",
-    [toScValString(productId), toScValString(newStatus)],
-    caller,
-    true
-  );
-}
-
-/**
- * Get product details (read-only).
- * Calls: get_product(product_id: String) -> Map<Symbol, String>
- * Returns: { origin: string, status: string } or null
- */
-export async function getProduct(
-  productId: string,
-  caller?: string
-) {
-  return readContract(
-    "get_product",
-    [toScValString(productId)],
-    caller
   );
 }
 
